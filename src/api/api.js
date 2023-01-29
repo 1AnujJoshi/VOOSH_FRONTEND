@@ -16,9 +16,6 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-// const api = axios.create({
-//   baseURL: "http://localhost:3000/",
-// });
 
 let api = {
   user: {
