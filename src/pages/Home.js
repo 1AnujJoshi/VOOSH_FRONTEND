@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/api";
+
 const Home = () => {
   const [userDetails, setUserDetails] = useState({
     name: "",
@@ -23,14 +24,25 @@ const Home = () => {
   return (
     <div>
       <div className=" w-screen text-center py-20 align-middle">
+        <h1 className="text-white text-2xl py-6">Home Page</h1>
         {userDetails.name === "" ? (
           <h1 className="text-[#3AC2CB]  text-2xl">
             You need to Log-in / Sign-up{" "}
           </h1>
         ) : (
           <div className=" justify-center">
+            {orders.length === 0 ? (
+              <h1 className="text-[#3AC2CB]  text-2xl">
+                You can create an order!!{" "}
+              </h1>
+            ) : (
+              ""
+            )}
             {orders.map((order, i) => (
-              <div key={i} className="text-white text-start border border-b-l">
+              <div
+                key={i}
+                className="text-[#3AC2CB]  mx-auto my-2 w-1/2 mx-36 px-9 py-6 text-start border border-b-l"
+              >
                 <ul className="list-disc"></ul>
                 <li>Order ID: {order?._id}</li>
                 <li> Product Name: {order?.product?.product_name}</li>

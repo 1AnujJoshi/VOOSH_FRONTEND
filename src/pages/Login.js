@@ -6,6 +6,7 @@ import api from "../api/api";
 const Login = () => {
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const Login = () => {
       console.log(res.status);
       if (res.status === 200) {
         navigate("/");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

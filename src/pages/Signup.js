@@ -7,15 +7,23 @@ const Signup = () => {
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleSignup = async (e) => {
-    let data = {
-      name: name,
-      phone_number: phone_number,
-      password: password,
-    };
-    const res = await api.user.signup(data);
-    if (res.status === 200) {
-      navigate("/login");
+    e.preventDefault();
+
+    try {
+      let data = {
+        name: name,
+        phone_number: phone_number,
+        password: password,
+      };
+      const res = await api.user.signup(data);
+
+      if (res.status === 200) {
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
