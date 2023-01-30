@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 const Signup = () => {
   const [name, setName] = useState("");
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const handleSignup = async (e) => {
     let data = {
       name: name,
@@ -14,8 +14,8 @@ const Signup = () => {
       password: password,
     };
     const res = await api.user.signup(data);
-    if (res.statusCode === 200) {
-      <Navigate to="/login" />;
+    if (res.status === 200) {
+      navigate("/login");
     }
   };
   return (

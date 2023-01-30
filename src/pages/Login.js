@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../api/api";
-var axios = require("axios");
-var qs = require("qs");
+
 const Login = () => {
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -15,11 +15,11 @@ const Login = () => {
         password: password,
       };
       const res = await api.user.login(data);
-
-      localStorage.setItem("user", JSON.stringify(res.data.data.record));
-      localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", res.data.token);
+      console.log(res.status);
       if (res.status === 200) {
-        <Navigate to="/" />;
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
